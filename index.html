@@ -9,14 +9,264 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
 
   <title>Frontend Mentor | Space tourism website</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <navigation-component>
+    <label for="home" slot="home">
+      <span>
+        00
+      </span>
+      <input type="radio" name="menu" id="home" tabindex="0" checked>
+      <span>
+        Home
+      </span>
+    </label>
+    <label for="home-mobile" slot="home-mobile">
+      <span>
+        00
+      </span>
+      <input type="radio" name="menu" id="home-mobile" tabindex="0">
+      <span>
+        Home
+      </span>
+    </label>
+    <label for="destination" slot="destination">
+      <span>
+        01
+      </span>
+      <input type="radio" name="menu" id="destination" tabindex="0">
+      <span>
+        Destination
+      </span>
+    </label>
+    <label for="destination-mobile" slot="destination-mobile">
+      <span>
+        01
+      </span>
+      <input type="radio" name="menu" id="destination-mobile" tabindex="0">
+      <span>
+        Destination
+      </span>
+    </label>
+    <label for="crew" slot="crew">
+      <span>
+        02
+      </span>
+      <input type="radio" name="menu" id="crew" tabindex="0">
+      <span>
+        Crew
+      </span>
+    </label>
+    <label for="crew-mobile" slot="crew-mobile">
+      <span>
+        02
+      </span>
+      <input type="radio" name="menu" id="crew-mobile" tabindex="0">
+      <span>
+        Crew
+      </span>
+    </label>
+    <label for="technology" slot="technology">
+      <span>
+        03
+      </span>
+      <input type="radio" name="menu" id="technology" tabindex="0">
+      <span>
+        Technology
+      </span>
+    </label>
+    <label for="technology-mobile" slot="technology-mobile">
+      <span>
+        03
+      </span>
+      <input type="radio" name="menu" id="technology-mobile" tabindex="0">
+      <span>
+        Technology
+      </span>
+    </label>
+    <template shadowrootmode="open">
+      <header>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48">
+            <title>logo</title>
+            <g fill="none" fill-rule="evenodd">
+              <circle cx="24" cy="24" r="24" fill="#FFF" />
+              <path fill="#0B0D17"
+                d="M24 0c0 16-8 24-24 24 15.718.114 23.718 8.114 24 24 0-16 8-24 24-24-16 0-24-8-24-24z" />
+            </g>
+          </svg>
+        </div>
+        <nav class="desktop">
+          <slot name="home"></slot>
+          <slot name="destination"></slot>
+          <slot name="crew"></slot>
+          <slot name="technology"></slot>
+        </nav>
+        <button aria-label="open menu" popovertarget="mobile-menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewbox="0 0 24 21">
+            <title>open menu</title>
+            <g fill="#D0D6F9" fill-rule="evenodd">
+              <path d="M0 0h24v3H0zM0 9h24v3H0zM0 18h24v3H0z" />
+            </g>
+          </svg>
+        </button>
+        <nav class="mobile" id="mobile-menu" popover="">
+          <header>
+            <button aria-label="close menu" popovertarget="mobile-menu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewbox="0 0 20 21">
+                <title>close menu</title>
+                <g fill="#D0D6F9" fill-rule="evenodd">
+                  <path d="M2.575.954l16.97 16.97-2.12 2.122L.455 3.076z" />
+                  <path d="M.454 17.925L17.424.955l2.122 2.12-16.97 16.97z" />
+                </g>
+              </svg>
+            </button>
+          </header>
+          <menu>
+            <li>
+              <slot name="home-mobile"></slot>
+            </li>
+            <li>
+              <slot name="destination-mobile"></slot>
+            </li>
+            <li>
+              <slot name="crew-mobile"></slot>
+            </li>
+            <li>
+              <slot name="technology-mobile"></slot>
+            </li>
+          </menu>
+        </nav>
+      </header>
+      <style>
+        :host {
+          z-index: 1;
+        }
 
-  00 Home
-  01 Destination
-  02 Crew
-  03 Technology
+        header {
+          display: grid;
+          align-items: center;
+          height: 150px;
+          width: 100svw;
+          box-sizing: border-box;
+          padding: 25px 10svw;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        nav[class="desktop"] {
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          grid-template-columns: repeat(4, min-content);
+          font-weight: 900;
+          column-gap: 20px;
+          padding: 1% 5% 1% 5%;
+          height: 100px;
+          width: 100%;
+          color: var(--blue-900);
+          background-color: #ffffff1c;
+          text-wrap: nowrap;
+        }
+
+        nav[class="mobile"]:popover-open {
+          position: absolute;
+          display: grid;
+          height: 100svh;
+          width: 55svw;
+          border: 0;
+          left: auto;
+          justify-items: baseline;
+          align-content: baseline;
+          box-sizing: border-box;
+          text-align: left;
+          gap: 0;
+          font-weight: 900;
+          backdrop-filter: blur(100px);
+          background-color: transparent;
+        }
+
+        nav[class="mobile"]:popover-open header {
+          width: 50svw;
+          place-self: end;
+        }
+
+        menu {
+          position: absolute;
+          left: 10%;
+          top: var(--header-height);
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          align-content: baseline;
+          list-style-type: none;
+          width: 50svw;
+          margin: 0;
+          padding: 0;
+          gap: 10px;
+          color: var(--blue-900);
+        }
+
+        li {
+          width: 70svw;
+        }
+
+        button {
+          display: none;
+          justify-self: end;
+          background: transparent;
+          border-color: transparent;
+          grid-column: -1;
+          height: 50px;
+          width: 50px;
+          cursor: pointer;
+        }
+
+        button svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        header:has(:popover-open) {
+          button[aria-label="close menu"] {
+            display: grid;
+          }
+
+          button[aria-label="open menu"] {
+            display: none;
+          }
+        }
+
+        @container(inline-size >=600px) and (inline-size <=850px) {
+          header {
+            padding-right: 0;
+          }
+
+          nav[class="desktop"] {
+            justify-self: end;
+          }
+        }
+
+        @container(inline-size < 600px) {
+          nav[class="desktop"] {
+            display: none;
+          }
+
+          button[aria-label="open menu"] {
+            display: grid;
+          }
+
+          ::slotted(label) {
+            display: grid;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 40px;
+          }
+        }
+      </style>
+    </template>
+  </navigation-component>
 
   So, you want to travel to
   Space
