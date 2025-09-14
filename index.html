@@ -1899,6 +1899,155 @@
               </style>
             </template>
           </crew-card>
+          <crew-card crew-member="specialist">
+            <span slot="title">
+              Mission Specialist
+            </span>
+            <span slot="name">
+              Mark Shuttleworth
+            </span>
+            <span slot="bio">
+              Mark Richard Shuttleworth is the founder and CEO of Canonical, the company behind
+              the Linux-based Ubuntu operating system. Shuttleworth became the first South
+              African to travel to space as a space tourist.
+            </span>
+            <template shadowrootmode="open">
+              <article>
+                <h1>
+                  <slot name="title"></slot>
+                </h1>
+                <h2>
+                  <slot name="name"></slot>
+                </h2>
+                <p>
+                  <slot name="bio"></slot>
+                </p>
+              </article>
+              <picture>
+                <img src="./assets/crew/image-mark-shuttleworth.webp" alt="Mark Richard Shuttleworth" width="575"
+                  height="575" loading="lazy">
+              </picture>
+              <style>
+                :host {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  place-items: center;
+                  width: var(--card-width, 910px);
+                  min-height: 410px;
+                  place-self: center;
+                }
+
+                picture {
+                  height: 100%;
+                  width: 100%;
+                }
+
+                img {
+                  height: 80%;
+                  position: absolute;
+                  bottom: 0;
+                  z-index: 1;
+                  animation-name: crew-intro;
+                  animation-duration: 5s;
+                  animation-iteration-count: 1;
+                }
+
+                ::slotted(img) {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                }
+
+                @media(prefers-reduced-motion: no-preference) {
+                  @keyframes crew-intro {
+                    from {
+                      padding: 0;
+                      transform-style: preserve-3d;
+                      transform: rotate3d(-1, 0, 0, -90deg);
+                      filter: brightness(0.5);
+                      opacity: 0.1;
+                    }
+
+                    to {
+                      transform: rotate3d(-1, 0, 0, 0deg);
+                    }
+                  }
+                }
+
+                h1 {
+                  color: gray;
+                  font-size: 2em;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                  font-family: 'Bellefair', serif;
+                }
+
+                h2 {
+                  font-size: 3em;
+                  font-weight: 400;
+                  text-wrap: nowrap;
+                  font-family: 'Bellefair', serif;
+                  text-transform: uppercase;
+                }
+
+                p {
+                  color: var(--blue-300);
+                  transition: all 5s ease-in-out;
+                }
+
+                @starting-style {
+                  p {
+                    opacity: 0;
+                  }
+                }
+
+                @container (inline-size < 1000px) {
+                  :host {
+                    display: contents;
+                  }
+
+                  article {
+                    grid-row: 2;
+                    width: 80svw;
+                    height: min-content;
+                    text-align: center;
+                  }
+
+                  picture {
+                    grid-row: 4;
+                    width: 80svw;
+                    align-content: end;
+                    position: relative;
+                  }
+
+                  img {
+                    object-fit: contain;
+                    width: 100%;
+                  }
+
+                  h1 {
+                    margin-top: 2ch;
+                    font-size: 1.5em;
+                  }
+
+                  h2 {
+                    font-size: 2em;
+                  }
+
+                  p {
+                    box-sizing: border-box;
+                    padding: 0 10%;
+                  }
+                }
+
+                @container (inline-size < 600px) {
+                  p {
+                    padding: 0;
+                  }
+                }
+              </style>
+            </template>
+          </crew-card>
           <nav class="crew-menu">
             <label for="commander">
               <input type="radio" name="crew-menu" id="commander" checked tabindex="0">
