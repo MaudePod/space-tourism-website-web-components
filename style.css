@@ -1,0 +1,37 @@
+:root {
+    --blue-300: #D0D6f9;
+    --blue-900: #FFFFFF;
+    --card-width: 910px;
+    --header-height: 150px;
+}
+
+@font-face {
+    font-family: 'Barlow', sans-serif;
+    src: url(./fonts/Barlow/Barlow-Thin.ttf);
+}
+
+@font-face {
+    font-family: 'Bellefair', serif;
+    src: url(./fonts/Bellefair/Bellefair-Regular.ttf);
+}
+
+body {
+    display: grid;
+    container: body / inline-size;
+    min-height: 100svh;
+    width: 100svw;
+    margin: 0;
+    color: var(--blue-900);
+    background-color: black;
+    font-family: 'Barlow', sans-serif;
+}
+
+main {
+    display: grid;
+    container: main / inline-size;
+    height: calc(100svh - var(--header-height));
+    width: 100cqw;
+    place-items: center;
+    position: relative;
+    place-content: center;
+}
