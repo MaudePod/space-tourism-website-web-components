@@ -2512,6 +2512,153 @@
               </style>
             </template>
           </technology-card>
+          <technology-card technology="spaceport">
+            <span slot="technology-type">
+              Spaceport
+            </span>
+            <span slot="technology-description">
+              A spaceport or cosmodrome is a site for launching (or receiving) spacecraft,
+              by analogy to the seaport for ships or airport for aircraft. Based in the
+              famous Cape Canaveral, our spaceport is ideally situated to take advantage
+              of the Earth’s rotation for launch.
+            </span>
+            <img slot="img" src="./assets/technology/image-spaceport-portrait.jpg" alt="Spaceport" width="515"
+              height="527" loading="lazy">
+            <template shadowrootmode="open">
+              <article>
+                <h1>
+                  The terminology...
+                </h1>
+                <h2>
+                  <slot name="technology-type"></slot>
+                </h2>
+                <p>
+                  <slot name="technology-description"></slot>
+                </p>
+              </article>
+              <picture>
+                <slot name="img"></slot>
+              </picture>
+              <style>
+                :host {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: var(--column-gap, 20px);
+                  width: calc(var(--card-width, 910px) - var(--nav-width, 40px) - var(--column-gap, 20px));
+                  place-self: center;
+                }
+
+                article {
+                  align-self: center;
+                  min-width: 340px;
+                  transition: all 2s ease-in-out;
+                  translate: unset;
+                }
+
+                @media(prefers-reduced-motion: no-preference) {
+                  @starting-style {
+                    article {
+                      translate: -100%;
+                      opacity: 0;
+                    }
+                  }
+                }
+
+                h1 {
+                  color: gray;
+                  font-size: clamp(1em, 1.5em, 2em);
+                  margin: 0;
+                  font-family: 'Bellefair', serif;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                }
+
+                h2 {
+                  font-size: clamp(1.5em, 2em, 3em);
+                  text-wrap: nowrap;
+                  margin: 0;
+                  font-family: 'Bellefair', serif;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                }
+
+                p {
+                  color: var(--blue-300);
+                  font-size: clamp(0.8em, 1em, 1.2em)
+                }
+
+                picture {
+                  display: grid;
+                }
+
+                ::slotted(img) {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  animation-name: tech-intro;
+                  animation-duration: 5s;
+                  animation-iteration-count: 1;
+                }
+
+                @media(prefers-reduced-motion: no-preference) {
+                  @keyframes tech-intro {
+                    from {
+                      padding: 0;
+                      transform-style: preserve-3d;
+                      transform: scale(0%);
+                      filter: brightness(0.1);
+                      opacity: 0.1;
+                    }
+
+                    to {
+                      transform: scale(100%);
+                    }
+
+                  }
+                }
+
+                nav[class="technology-card"] {
+                  display: grid;
+                  grid-template-columns: 15fr 85fr;
+                  column-gap: 10px;
+                }
+
+                @container(inline-size < 1000px) {
+                  :host {
+                    display: contents;
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                  }
+
+                  p {
+                    box-sizing: border-box;
+                    padding: 0 10%;
+                  }
+
+                  picture {
+                    order: 1;
+                    place-self: center;
+                    place-items: center;
+                    width: 100svw;
+                    height: 30svh;
+                  }
+
+                  ::slotted(img) {
+                    content: url(./assets/technology/image-spaceport-landscape.jpg);
+                    height: 30svh;
+                    object-fit: fill;
+                  }
+
+                  article {
+                    order: 3;
+                    place-self: center;
+                    width: 80svw;
+                  }
+
+                }
+              </style>
+            </template>
+          </technology-card>
         </div>
         <style>
           :host {
