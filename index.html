@@ -2343,6 +2343,211 @@
         </style>
       </template>
     </crew-component>
+    <technology-component>
+      <template shadowrootmode="open">
+        <div class="technology-grid">
+          <span class="technology-header">
+            <span class="header-prefix">03</span>
+            <span class="header-text">Technology</span>
+          </span>
+
+          <nav class="technology-menu">
+            <label for="space-1">
+              1
+              <input type="radio" name="technology-menu" id="space-1" checked tabindex="0">
+            </label>
+            <label for="space-2">
+              2
+              <input type="radio" name="technology-menu" id="space-2" tabindex="0">
+            </label>
+            <label for="space-3">
+              3
+              <input type="radio" name="technology-menu" id="space-3" tabindex="0">
+            </label>
+          </nav>
+
+        </div>
+        <style>
+          :host {
+            --nav-width: 40px;
+            --column-gap: 30px;
+            width: var(--card-width, 910px);
+          }
+
+          div[class="technology-grid"] {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            grid-template-rows: minmax(min-content, 15svh) auto auto;
+            gap: var(--column-gap, 20px);
+          }
+
+          nav[class="technology-menu"] {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 20px;
+            place-items: center;
+            place-self: center;
+          }
+
+          label[for="space-1"],
+          label[for="space-2"],
+          label[for="space-3"] {
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--blue-900);
+            border-radius: 50%;
+            color: var(--blue-900);
+            height: 45px;
+            width: 45px;
+            cursor: pointer;
+            user-select: none;
+          }
+
+          input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+
+          span[class="technology-header"] {
+            display: contents;
+            font-size: clamp(1.2em, 2em, 2.2em);
+            width: 100%;
+            text-transform: uppercase;
+          }
+
+          span[class="header-prefix"] {
+            color: grey;
+          }
+
+          span[class="header-text"] {
+            font-weight: 400;
+            font-family: 'Bellefair', serif;
+          }
+
+          technology-card {
+            display: none;
+          }
+
+          div[class="technology-grid"]:has(input[id="space-1"]:checked) {
+            technology-card[technology="launch"] {
+              display: grid;
+            }
+          }
+
+          div[class="technology-grid"]:has(input[id="space-2"]:checked) {
+            technology-card[technology="spaceport"] {
+              display: grid;
+            }
+          }
+
+          div[class="technology-grid"]:has(input[id="space-3"]:checked) {
+            technology-card[technology="capsule"] {
+              display: grid;
+            }
+          }
+
+          div[class="technology-grid"]:has(input[id="space-1"]:checked) label[for="space-1"],
+          div[class="technology-grid"]:has(input[id="space-2"]:checked) label[for="space-2"],
+          div[class="technology-grid"]:has(input[id="space-3"]:checked) label[for="space-3"] {
+            display: grid;
+            place-items: center;
+            background-color: var(--blue-900);
+            border-radius: 50%;
+            color: black;
+            height: 55px;
+            width: 55px;
+          }
+
+          label:focus-within {
+            border-style: dotted;
+            border-color: var(--blue-300);
+          }
+
+          span[class="header-prefix"] {
+            color: grey;
+          }
+
+          span[class="header-text"] {
+            font-family: 'Bellefair', serif;
+            transform: translateX(-20px);
+          }
+
+          @container(inline-size < 1000px) {
+            :host {
+              width: 100svw;
+              --column-gap: 15px;
+            }
+
+            div[class="technology-grid"]:has(input[id="space-1"]:checked) {
+              technology-card[technology="launch"] {
+                display: contents;
+              }
+            }
+
+            div[class="technology-grid"]:has(input[id="space-2"]:checked) {
+              technology-card[technology="spaceport"] {
+                display: contents;
+              }
+            }
+
+            div[class="technology-grid"]:has(input[id="space-3"]:checked) {
+              technology-card[technology="capsule"] {
+                display: contents;
+              }
+            }
+
+            span[class="technology-header"] {
+              display: flex;
+              column-gap: 10px;
+              padding-left: 10svw;
+              font-size: 1.2em;
+            }
+
+            span[class="header-text"] {
+              transform: unset;
+            }
+
+            div[class="technology-grid"] {
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-template-rows: min-content 30svh auto auto;
+              gap: var(--column-gap, 20px);
+              place-content: start;
+            }
+
+            nav[class="technology-menu"] {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              width: min-content;
+              place-items: center;
+              place-self: center;
+              gap: 20px;
+              order: 2;
+            }
+
+            label[for="space-1"],
+            label[for="space-2"],
+            label[for="space-3"] {
+              height: 35px;
+              width: 35px;
+            }
+
+            div[class="technology-grid"]:has(input[id="space-1"]:checked) label[for="space-1"],
+            div[class="technology-grid"]:has(input[id="space-2"]:checked) label[for="space-2"],
+            div[class="technology-grid"]:has(input[id="space-3"]:checked) label[for="space-3"] {
+              height: 45px;
+              width: 45px;
+            }
+
+          }
+        </style>
+      </template>
+
+    </technology-component>
+
+
   </main>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
