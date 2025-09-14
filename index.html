@@ -273,13 +273,162 @@
     <img class="crew">
     <img class="technology">
   </div>
-  So, you want to travel to
-  Space
-  Let’s face it; if you want to go to space, you might as well genuinely go to
-  outer space and not hover kind of on the edge of it. Well sit back, and relax
-  because we’ll give you a truly out of this world experience!
+  <main>
+    <home-component>
+      <label for="explore" slot="explore" aria-label="explore">
+        <input type="radio" name="menu" id="explore" tabindex="0">
+      </label>
+      <template shadowrootmode="open">
+        <article>
+          <p>
+            So, you want to travel to
+          </p>
+          <p>
+            Space
+          </p>
+          <p>
+            Let’s face it; if you want to go to space, you might as well genuinely go to
+            outer space and not hover kind of on the edge of it. Well sit back, and relax
+            because we’ll give you a truly out of this world experience!
+          </p>
+        </article>
+        <aside>
+          <slot name="explore"></slot>
+          <div>
+            Explore
+          </div>
+        </aside>
+        <style>
+          :host {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: var(--card-width, 910px);
+            place-self: center;
+          }
 
-  Explore
+          ::slotted(label) {
+            position: absolute;
+            display: grid;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 100px 50px;
+            z-index: 1;
+            opacity: 0;
+            width: 170px;
+            height: 65px;
+          }
+
+          ::slotted(:hover) {
+            animation-name: explore-intro;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+          }
+
+          aside {
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
+          }
+
+          article,
+          div {
+            display: grid;
+            place-content: center;
+          }
+
+          div {
+            cursor: pointer;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          p:nth-of-type(1) {
+            font-size: 1.5em;
+            color: var(--blue-300);
+            text-transform: uppercase;
+          }
+
+          p:nth-of-type(2) {
+            font-size: clamp(2em, 8vh, 9em);
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            font-family: 'Bellefair', serif;
+            font-weight: 400;
+          }
+
+          p:nth-of-type(3) {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-around;
+            color: var(--blue-300)
+          }
+
+          div {
+            position: absolute;
+            font-size: clamp(1.2em, 2.8em, 3.2em);
+            color: black;
+            border-radius: 50%;
+            background-color: var(--blue-900);
+            padding: 100px 50px;
+            user-select: none;
+            width: 170px;
+            height: 65px;
+            text-transform: uppercase;
+          }
+
+          @container(inline-size < 1000px) {
+            :host {
+              display: grid;
+              grid-template-columns: 1fr;
+              width: 80svw;
+              height: 80svh;
+              text-align: center;
+              text-wrap: balance;
+            }
+
+            aside {
+              align-items: flex-start;
+              text-transform: uppercase;
+            }
+
+            p {
+              width: 80%;
+              margin: auto;
+            }
+          }
+
+          @container(inline-size >=800px) and (inline-size <=1000px) {
+            p:nth-of-type(1) {
+              font-size: 1.8em;
+            }
+          }
+
+          @container(inline-size < 800px) {
+            :host {
+              gap: 25px;
+              grid-template-rows: min-content min-content;
+            }
+
+            p:nth-of-type(1) {
+              font-size: 1.2em;
+            }
+
+            p {
+              width: auto;
+            }
+
+            aside {
+              transform: scale(0.7);
+            }
+          }
+        </style>
+      </template>
+    </home-component>
+  </main>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="https://github.com/MaudePod">MaudePod</a>.
