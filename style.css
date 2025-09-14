@@ -72,3 +72,244 @@ label:has(span) {
         border-bottom: 3px solid var(--blue-900);
     }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes explore-intro {
+        0% {
+            border: 0;
+        }
+
+        25% {
+            border: 25px solid rgba(255, 255, 255, 0.2);
+        }
+
+        50% {
+            border: 25px solid rgba(255, 255, 255, 0.1);
+        }
+
+        75% {
+            border: 25px solid rgba(255, 255, 255, 0.2);
+        }
+
+        100% {
+            border: 0;
+        }
+    }
+}
+
+input {
+    opacity: 0;
+    width: 5px;
+}
+
+div[class="background-images"] {
+    display: none;
+}
+
+div[class="background-images"] img {
+    width: 100svw;
+    height: 100svh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    object-fit: cover;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    div[class="background-images"] img {
+        opacity: 0;
+        transition: all 2s ease-out;
+    }
+}
+
+home-component,
+destination-component,
+crew-component,
+technology-component {
+    display: none;
+    height: 80svh;
+    box-sizing: border-box;
+}
+
+:root:has(input[id="home"]:checked),
+:root:has(input[id="home-mobile"]:checked) {
+    div[class="background-images"] {
+        display: flex;
+    }
+
+    img[class="home"] {
+        opacity: 1;
+        display: grid;
+    }
+
+    img[class="home"] {
+        content: url(./assets/home/background-home-desktop.jpg) / "home";
+        aspect-ratio: 1440 / 900;
+    }
+
+    @container body (inline-size < 1000px) {
+        img[class="home"] {
+            content: url(./assets/home/background-home-tablet.jpg) / "home";
+            aspect-ratio: 768 / 1024;
+        }
+    }
+
+    @container body (inline-size < 600px) {
+        img[class="home"] {
+            content: url(./assets/home/background-home-mobile.jpg) / "home";
+            aspect-ratio: 375 / 667;
+        }
+    }
+
+    home-component {
+        display: grid;
+        max-width: 100svw;
+    }
+
+}
+
+:root:has(input[id="explore"]:checked),
+:root:has(input[id="destination"]:checked),
+:root:has(input[id="destination-mobile"]:checked) {
+    div[class="background-images"] {
+        display: flex;
+    }
+
+    img[class="destination"] {
+        opacity: 1;
+        display: grid;
+    }
+
+    img[class="destination"] {
+        content: url(./assets/destination/background-destination-desktop.jpg) / "destination";
+        aspect-ratio: 1440 / 900;
+    }
+
+    @container body (inline-size < 1000px) {
+        img[class="destination"] {
+            content: url(./assets/destination/background-destination-tablet.jpg) / "destination";
+            aspect-ratio: 768 / 1024;
+        }
+    }
+
+    @container body (inline-size < 600px) {
+        img[class="destination"] {
+            content: url(./assets/destination/background-destination-mobile.jpg) / "destination";
+            aspect-ratio: 375 / 667;
+        }
+    }
+
+    destination-component {
+        display: grid;
+        max-width: 100svw;
+    }
+}
+
+:root:has(input[id="crew"]:checked),
+:root:has(input[id="crew-mobile"]:checked) {
+    div[class="background-images"] {
+        display: flex;
+    }
+
+    img[class="crew"] {
+        opacity: 1;
+        display: grid;
+    }
+
+    img[class="crew"] {
+        content: url(./assets/crew/background-crew-desktop.jpg) / "crew";
+        aspect-ratio: 1440 / 900;
+    }
+
+    @container body (inline-size < 1000px) {
+        img[class="crew"] {
+            content: url(./assets/crew/background-crew-tablet.jpg) / "crew";
+            aspect-ratio: 768 / 1024;
+        }
+    }
+
+    @container body (inline-size < 600px) {
+        img[class="crew"] {
+            content: url(./assets/crew/background-crew-mobile.jpg) / "crew";
+            aspect-ratio: 375 / 667;
+        }
+    }
+
+    crew-component {
+        display: grid;
+        max-width: 100svw;
+    }
+}
+
+:root:has(input[id="technology"]:checked),
+:root:has(input[id="technology-mobile"]:checked) {
+    div[class="background-images"] {
+        display: flex;
+    }
+
+    img[class="technology"] {
+        opacity: 1;
+        display: grid;
+    }
+
+    img[class="technology"] {
+        content: url(./assets/technology/background-technology-desktop.jpg) / "technology";
+        aspect-ratio: 1440 / 900;
+    }
+
+    @container body (inline-size < 1000px) {
+        img[class="technology"] {
+            content: url(./assets/technology/background-technology-tablet.jpg) / "technology";
+            aspect-ratio: 768 / 1024;
+        }
+    }
+
+    @container body (inline-size < 600px) {
+        img[class="technology"] {
+            content: url(./assets/technology/background-technology-mobile.jpg) / "technology";
+            aspect-ratio: 375 / 667;
+        }
+    }
+
+    technology-component {
+        display: grid;
+        max-width: 100svw;
+    }
+}
+
+:root:has(input[id="explore"]:hover) {
+    label[for="destination"] {
+        border-bottom: 3px solid rgb(170, 168, 168);
+    }
+}
+
+:root:has(input[id="explore"]:checked) {
+    label[for="destination"] {
+        text-decoration: none;
+        border-bottom: 3px solid var(--blue-900);
+    }
+}
+
+div[class="attribution"] {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    display: flex;
+    place-content: center;
+    font-size: small;
+}
+
+@container body (inline-size < 1000px) {
+    label:has(input:checked) {
+        text-decoration: none;
+    }
+
+    label:has(span) {
+        width: 100%;
+    }
+
+    label:has(input:checked) {
+        border: 0;
+    }
+}
