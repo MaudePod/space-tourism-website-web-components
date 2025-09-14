@@ -430,7 +430,236 @@
     </home-component>
 
     <destination-component>
+      <destination-card slot="Moon">
+        <img src="./assets/destination/image-moon.webp" alt="Moon" width="445px" height="445px" slot="img"
+          loading="lazy">
+        <span slot="destination-name">Moon</span>
+        <p slot="destination-description">
+          See our planet as you’ve never seen it before. A perfect relaxing trip away to help
+          regain perspective and come back refreshed. While you’re there, take in some history
+          by visiting the Luna 2 and Apollo 11 landing sites.
+        </p>
+        <span slot="distance">
+          384,400 km
+        </span>
+        <span slot="travel-time">
+          3 days
+        </span>
+        <template shadowrootmode="open">
+          <picture>
+            <slot name="img"></slot>
+          </picture>
+          <article>
+            <header>
+              <h1>
+                <slot name="destination-name"></slot>
+              </h1>
+            </header>
+            <p>
+              <slot name="destination-description"></slot>
+            </p>
+            <footer>
+              <section class="detail-left">
+                <section>
+                  Avg. distance
+                </section>
+                <section>
+                  <slot name="distance"></slot>
+                </section>
+              </section>
+              <section class="detail-right">
+                <section>
+                  Est. travel time
+                </section>
+                <section>
+                  <slot name="travel-time"></slot>
+                </section>
+              </section>
+            </footer>
+          </article>
+          <style>
+            :host {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              place-items: center;
+              width: var(--card-width, 910px);
+              place-self: center;
+            }
 
+            picture {
+              width: 100%;
+              height: 100%;
+              box-sizing: border-box;
+              padding: 25px;
+              transition: all 200ms ease-in-out;
+              animation-name: rock-intro;
+              animation-duration: 2s;
+              animation-iteration-count: 1;
+            }
+
+            ::slotted(img) {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+
+            @media(prefers-reduced-motion: no-preference) {
+              @keyframes rock-intro {
+                from {
+                  padding: 0;
+                  transform-style: preserve-3d;
+                  transform: translate(-100%);
+                  filter: brightness(0.5);
+                  opacity: 0.1;
+                }
+
+                to {
+                  padding: 25px;
+                }
+              }
+            }
+
+            h1 {
+              font-family: 'Bellefair', serif;
+              font-size: clamp(4rem, 5rem, 6rem);
+              font-weight: 400;
+              text-transform: uppercase;
+              margin: 0;
+            }
+
+            p {
+              font-size: clamp(0.8rem, 1rem, 1.2rem);
+              border-bottom: 3px solid #fff5;
+              margin-bottom: 20px;
+              text-wrap: balance;
+              color: var(--blue-300);
+            }
+
+            footer {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              font-size: 1.2em;
+              justify-content: space-around;
+              color: var(--blue-300)
+            }
+
+            section[class="detail-left"] section:nth-of-type(2),
+            section[class="detail-right"] section:nth-child(2) {
+              font-size: 1.8em;
+              color: white;
+              font-family: 'Bellefair', serif;
+            }
+
+            section[class="detail-left"],
+            section[class="detail-right"] {
+              display: grid;
+              row-gap: 20px;
+              text-transform: uppercase;
+            }
+
+            article {
+              transition: all 2s ease-in-out;
+              translate: unset;
+            }
+
+            @media(prefers-reduced-motion: no-preference) {
+              @starting-style {
+                article {
+                  translate: -100%;
+                  opacity: 0;
+                }
+              }
+            }
+
+            @container (inline-size < 1000px) {
+              :host {
+                grid-template-columns: 1fr;
+                grid-template-rows: 25% 45%;
+                max-width: 80svw;
+                text-align: center;
+              }
+
+              picture {
+                order: 2;
+                padding: 5%;
+                animation-name: rock-intro-mobile;
+              }
+
+              article {
+                grid-row: 4;
+              }
+
+              @media (prefers-reduced-motion: no-preference) {
+                @keyframes rock-intro-mobile {
+                  from {
+                    padding: 90%;
+                    filter: brightness(0.5);
+                    opacity: 0.1;
+                  }
+
+                  to {
+                    padding: 5%;
+                  }
+                }
+              }
+
+              h1 {
+                font-size: 4em;
+              }
+
+              p {
+                font-size: 1.2em;
+                border-bottom: 3px solid #fff5;
+                margin-bottom: 20px;
+              }
+
+              section[class="detail-left"],
+              section[class="detail-right"] {
+                display: grid;
+                row-gap: 20px;
+              }
+
+              section[class="detail-left"] section:nth-of-type(2),
+              section[class="detail-right"] section:nth-child(2) {
+                font-size: 1.8em;
+              }
+            }
+
+            @container (inline-size < 600px) {
+              :host {
+                grid-template-rows: 30% 60%;
+              }
+
+              h1 {
+                font-size: 2em;
+              }
+
+              p {
+                font-size: 1em;
+                margin: 0;
+                margin-bottom: 5px;
+                padding: 10px 0 10px 0;
+              }
+
+              section[class="detail-left"],
+              section[class="detail-right"] {
+                row-gap: 2px;
+              }
+
+              section[class="detail-left"] section:nth-of-type(2),
+              section[class="detail-right"] section:nth-child(2) {
+                font-size: 1.5em;
+              }
+
+              footer {
+                display: grid;
+                grid-template-columns: 1fr;
+                row-gap: unset;
+              }
+            }
+          </style>
+        </template>
+      </destination-card>
       <template shadowrootmode="open">
         <div class="destination-grid">
           <span class="destination-header">
