@@ -1594,6 +1594,158 @@
       </template>
     </destination-component>
 
+    <crew-component>
+      <template shadowrootmode="open">
+        <div class="crew-grid">
+          <span class="crew-header">
+            <span class="header-prefix">02</span>
+            <span class="header-text">Meet your crew</span>
+          </span>
+          <nav class="crew-menu">
+            <label for="commander">
+              <input type="radio" name="crew-menu" id="commander" checked tabindex="0">
+            </label>
+            <label for="engineer">
+              <input type="radio" name="crew-menu" id="engineer" tabindex="0">
+            </label>
+            <label for="pilot">
+              <input type="radio" name="crew-menu" id="pilot" tabindex="0">
+            </label>
+            <label for="specialist">
+              <input type="radio" name="crew-menu" id="specialist" tabindex="0">
+            </label>
+          </nav>
+        </div>
+        <style>
+          :host {
+            width: var(--card-width, 910px);
+            place-self: center;
+          }
+
+          crew-card {
+            display: none;
+          }
+
+          div[class="crew-grid"] {
+            display: grid;
+          }
+
+          div[class="crew-grid"]:has(input[id="commander"]:checked) {
+            crew-card[crew-member="commander"] {
+              display: grid;
+            }
+          }
+
+          div[class="crew-grid"]:has(input[id="engineer"]:checked) {
+            crew-card[crew-member="engineer"] {
+              display: grid;
+            }
+          }
+
+          div[class="crew-grid"]:has(input[id="pilot"]:checked) {
+            crew-card[crew-member="pilot"] {
+              display: grid;
+            }
+          }
+
+          div[class="crew-grid"]:has(input[id="specialist"]:checked) {
+            crew-card[crew-member="specialist"] {
+              display: grid;
+            }
+          }
+
+          span[class="crew-header"] {
+            display: flex;
+            font-size: 2em;
+            width: 100%;
+            column-gap: 10px;
+            text-transform: uppercase;
+          }
+
+          span[class="header-prefix"] {
+            color: gray
+          }
+
+          span[class="header-text"] {
+            font-weight: 400;
+            font-family: 'Bellefair', serif;
+          }
+
+          nav[class="crew-menu"] {
+            display: grid;
+            grid-template-columns: repeat(4, 30px);
+            place-items: center;
+            width: 100%;
+            column-gap: 25px;
+            justify-self: end;
+          }
+
+          input[name="crew-menu"] {
+            appearance: none;
+            border: 1px solid grey;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: grey;
+            cursor: pointer;
+          }
+
+          input[name="crew-menu"]:checked {
+            background-color: white;
+            height: 20px;
+            width: 20px;
+          }
+
+          @container(inline-size < 1000px) {
+            :host {
+              width: 100%;
+            }
+
+            nav[class="crew-menu"] {
+              grid-row: 3;
+              justify-content: center;
+              height: min-content;
+            }
+
+            div[class="crew-grid"] {
+              grid-template-rows: min-content min-content min-content auto;
+            }
+
+            div[class="crew-grid"]:has(input[id="commander"]:checked) {
+              crew-card[crew-member="commander"] {
+                display: contents;
+              }
+            }
+
+            div[class="crew-grid"]:has(input[id="engineer"]:checked) {
+              crew-card[crew-member="engineer"] {
+                display: contents;
+              }
+            }
+
+            div[class="crew-grid"]:has(input[id="pilot"]:checked) {
+              crew-card[crew-member="pilot"] {
+                display: contents;
+              }
+            }
+
+            div[class="crew-grid"]:has(input[id="specialist"]:checked) {
+              crew-card[crew-member="specialist"] {
+                display: contents;
+              }
+            }
+
+          }
+
+          @container(inline-size < 600px) {
+            span[class="crew-header"] {
+              justify-content: center;
+              font-size: 1.2em;
+            }
+          }
+        </style>
+      </template>
+    </crew-component>
   </main>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
