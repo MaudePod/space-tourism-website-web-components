@@ -36,6 +36,14 @@ main {
     place-content: center;
 }
 
+label {
+    user-select: none;
+    text-shadow: 1px 1px 1px black;
+    color: var(--blue-900);
+    text-transform: uppercase;
+    opacity: 1;
+}
+
 label:hover {
     cursor: pointer;
 }
