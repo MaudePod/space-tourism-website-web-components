@@ -48,7 +48,7 @@ label:hover {
     cursor: pointer;
 }
 
-label:focus-within {
+label:focus-visible {
     border: 1px solid whitesmoke;
     border-style: dashed;
     text-decoration: none;
